@@ -937,7 +937,7 @@ extern {
     pub fn mallopt(param: ::c_int, value: ::c_int) -> ::c_int;
 }
 
-#[link(name = "util")]
+#[cfg_attr(not(target_env = "relibc"), link(name = "util"))]
 extern {
     pub fn ioctl(fd: ::c_int, request: ::c_ulong, ...) -> ::c_int;
     pub fn backtrace(buf: *mut *mut ::c_void,

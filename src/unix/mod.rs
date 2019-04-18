@@ -349,6 +349,13 @@ cfg_if! {
         #[link(name = "c")]
         #[link(name = "m")]
         extern {}
+    } else if #[cfg(target_env = "relibc")] {
+        #[cfg_attr(feature = "rustc-dep-of-std",
+                   link(name = "c", kind = "static",
+                        cfg(target_feature = "crt-static")))]
+        #[cfg_attr(feature = "rustc-dep-of-std",
+                   link(name = "c", cfg(not(target_feature = "crt-static"))))]
+        extern {}
     } else {
         #[link(name = "c")]
         #[link(name = "m")]
@@ -921,7 +928,7 @@ extern {
     pub fn pthread_rwlockattr_init(attr: *mut pthread_rwlockattr_t) -> ::c_int;
     pub fn pthread_rwlockattr_destroy(attr: *mut pthread_rwlockattr_t)
                                       -> ::c_int;
-    #[cfg_attr(all(target_os = "linux", not(target_env = "musl")),
+    #[cfg_attr(all(target_os = "linux", all(not(target_env = "musl"), not(target_env = "relibc"))),
                link_name = "__xpg_strerror_r")]
     pub fn strerror_r(errnum: ::c_int, buf: *mut c_char,
                       buflen: ::size_t) -> ::c_int;

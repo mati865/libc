@@ -820,7 +820,7 @@ pub const SYS_pkey_alloc: ::c_long = 289;
 pub const SYS_pkey_free: ::c_long = 290;
 pub const SYS_syscalls: ::c_long = 291;
 
-#[link(name = "util")]
+#[cfg_attr(not(target_env = "relibc"), link(name = "util"))]
 extern {
     pub fn sysctl(name: *mut ::c_int,
                   namelen: ::c_int,
