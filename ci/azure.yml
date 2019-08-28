@@ -1,11 +1,3 @@
-variables:
-  - group: secrets
-resources:
-  repositories:
-    - repository: rustinfra
-      type: github
-      name: rust-lang/simpleinfra
-      endpoint: gnzlbg
 trigger: ["auto-libc","try"]
 pr: ["master"]
 
