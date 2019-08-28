@@ -121,19 +121,6 @@ jobs:
         i686-pc-windows-msvc:
           TARGET: i686-pc-windows-msvc
 
-  - job: StyleAndDocs
-    pool:
-      vmImage: ubuntu-16.04
-    steps:
-      - template: azure-install-rust.yml
-      - script: sh ci/style.sh
-        displayName: Check style
-      - script: LIBC_CI=1 sh ci/dox.sh
-        displayName: Generate documentation
-      - template: azure-configs/static-websites.yml@rustinfra
-        parameters:
-          deploy_dir: target/doc
-
   # FIXME: re-enable these after the next release
   #- job: SemverLinux
   #  dependsOn: BuildChannelsLinux
