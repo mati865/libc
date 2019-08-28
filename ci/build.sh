@@ -179,10 +179,6 @@ for TARGET in $TARGETS; do
     test_target build "$TARGET"
 done
 
-# FIXME: https://github.com/rust-lang/rust/issues/58564
-# sparc-unknown-linux-gnu
-# FIXME: https://github.com/rust-lang/rust/issues/62932
-# thumbv6m-none-eabi
 RUST_LINUX_NO_CORE_TARGETS="\
 aarch64-pc-windows-msvc \
 aarch64-unknown-cloudabi \
@@ -212,8 +208,9 @@ powerpc-unknown-netbsd \
 powerpc64-unknown-freebsd \
 riscv32imac-unknown-none-elf \
 riscv32imc-unknown-none-elf \
+sparc-unknown-linux-gnu \
 sparc64-unknown-netbsd \
-
+thumbv6m-none-eabi \
 thumbv7em-none-eabi \
 thumbv7em-none-eabihf \
 thumbv7m-none-eabi \
